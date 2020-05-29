@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>New Category</h2>
+<form th:action="@{/processcategory}" th:object="${category}" method="post">
+    <input type="hidden" th:field="*{id}">
+    Car Type: <input type="text" th:field="*{carType}"><br>
+
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
