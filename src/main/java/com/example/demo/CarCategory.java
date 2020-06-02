@@ -1,8 +1,9 @@
 package com.example.demo;
-
+// OneToMany relationship with Car.java
 
 import javax.persistence.*;
 import java.util.Set;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class CarCategory {
@@ -10,7 +11,10 @@ public class CarCategory {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String carType;
+    @NotNull
+    private String type;
+
+    //empty constructor
 
     public CarCategory() {
     }
@@ -20,6 +24,8 @@ public class CarCategory {
     public Set<Car> cars;
 
 
+    //getters and setters
+
     public long getId() {
         return id;
     }
@@ -28,15 +34,25 @@ public class CarCategory {
         this.id = id;
     }
 
-    public String getCarType() {
-        return carType;
+    public String getType() {
+        return type;
     }
 
-    public void setCarType(String carType) {
-        this.carType = carType;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Set<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(Set<Car> cars) {
+        this.cars = cars;
     }
 
 
+
     }
+
 
 

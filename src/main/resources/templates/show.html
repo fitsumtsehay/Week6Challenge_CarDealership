@@ -5,20 +5,31 @@
     <title>Title</title>
 </head>
 <body>
-<h2>Show</h2>
+<a th:href="@{/}"><button>Vehicle List</button></a>
+<a th:href="@{/newCarCategory.html}"><button>Add Category</button></a>
+<a th:href="@{/newcar}"><button>Add Car</button></a>
+<h2>Details</h2>
 <table class="table">
         <tr>
+            <th>Type</th>
             <th>Make</th>
             <th>Model</th>
             <th>Price</th>
+            <th>Actions</th>
         </tr>
 
     <tbody>
-    <div th:each="category : ${allcategories}">
-        <tr th:each="car : ${category.car}">
+
+    <div>Details</div>
+
+        <div th:each="car : ${show}">
+        <tr th:each="car : ${allCarCategory.car}">
+
+    <td th:inline="text">[[${car.type}]]</td>
             <td th:inline="text">[[${car.make}]]</td>
-            <td th:inline="text">[[${car.madel}]]</td>
+            <td th:inline="text">[[${car.model}]]</td>
             <td th:inline="text">[[${car.price}]]</td>
+
             <td>
                 <a th:href="@{/update/{id}(id=${car.id})}"><button>Update</button></a>
                 <a th:href="@{/delete/{id}(id=${car.id})}"><button>Delete</button></a>

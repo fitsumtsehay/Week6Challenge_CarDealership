@@ -8,27 +8,32 @@
 <body>
 
 <h2>Cars</h2>
-<a th:href="@{/newCarCategory}"><button>Add Category</button></a>
+<a th:href="@{/newcarCategory}"><button>Add Category</button></a>
 <a th:href="@{/newcar}"><button>Add Car</button></a>
+
+<h2>Listings</h2>
 
 <table class="table">
         <tr>
+
+            <th>type</th>
             <th>Make</th>
             <th>Model</th>
             <th>Price</th>
+            <th>Actions</th>
+
         </tr>
 
     <tbody>
 
         <tr th:each="category: ${allCarCategory}">
 
-            <td>[[${car.make}]]</td>
-            <td>[[${car.model}]]</td>
-            <td>[[${car.price}]]</td>
-            <td>
-                <a th:href="@{/details/{id}(id=${car.id})}"><button>Details</button></a>
-                <a th:href="@{/update/{id}(id=${car.id})}"><button>Update</button></a>
-                <a th:href="@{/delete/{id}(id=${car.id})}"><button>Delete</button></a>
+            <td>[[${category.type}]]</td>
+
+
+                <a th:href="@{/show.html/{id}(id=${category.id})}"><button>Details</button></a>
+                <a th:href="@{/update/{id}(id=${category.id})}"><button>Update</button></a>
+                <a th:href="@{/delete/{id}(id=${category.id})}"><button>Delete</button></a>
             </td>
         </tr>
     </tbody>

@@ -2,19 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Add Car</title>
 </head>
 <body>
 <h2>New Car</h2>
-<form th:action="@{/processcar}" th:object="${car}" method="post">
+<form th:action="@{/processCar}" th:object="${newcar}" method="post">
     <input type="hidden" th:field="*{id}">
 
     Make: <input type="text" th:field="*{make}"> <br>
     Model: <input type="text" th:field="*{model}"> <br>
     Price: <input type="number" th:field="*{price}"> <br>
+    Price: <input type="text" th:field="*{type}"> <br>
     Category: <select th:field="*{category}">
     <option th:each="category : ${allcarCategory}"
-            th:text="${category.carType}"
+            th:text="${category.type}"
             th:value="${category.id}">
     </option>
 

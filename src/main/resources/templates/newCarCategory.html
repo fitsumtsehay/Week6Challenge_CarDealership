@@ -5,10 +5,15 @@
     <title>Title</title>
 </head>
 <body>
+
+<a th:href="@{/}"><button>Vehicle List</button></a>
+<a th:href="@{/newcarcategory}"><button>Add Category</button></a>
+<a th:href="@{/newcar}"><button>Add Car</button></a>
+
 <h2>New Category</h2>
-<form th:action="@{/processcategory}" th:object="${category}" method="post">
+<form th:action="@{/processcarCategory}" th:object="${category}" method="post">
     <input type="hidden" th:field="*{id}">
-    Car Type: <input type="text" th:field="*{carType}"><br>
+    Car Type: <input type="text" th:field="*{type}"><br>
 
     <input type="submit" value="Submit">
 </form>

@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
+
 @Controller
 public class HomeController {
     @Autowired
@@ -17,7 +19,7 @@ public class HomeController {
     CarCategoryRepository carCategoryRepository;
 
 
-    @RequestMapping("/list")
+    @RequestMapping("/")
     public String list(Model model) {
         model.addAttribute("allCarCategory", carCategoryRepository.findAll());
         return "list";
@@ -25,23 +27,24 @@ public class HomeController {
 
     @RequestMapping("/newcarCategory")
     public String newCarCategory(Model model) {
-        model.addAttribute("carCategory", new CarCategory());
-        return "newcarCategory";
+        model.addAttribute("category", new CarCategory());
+        return "newCarCategory";
     }
      @RequestMapping("/newcar")
      public String newCar(Model model){
          model.addAttribute("allcarCategory", carCategoryRepository.findAll());
+         model.addAttribute("newcar", new Car());
          return "newcar";
         }
     @PostMapping("processCar")
-    public String processCar(@ModelAttribute("car") Car car){
+    public String processCar(@Valid Car car){
          carRepository.save(car);
-         return "redirect:/list";
+         return "redirect:/";
         }
     @PostMapping("processcarCategory")
     public String procressCategory(@ModelAttribute("category") CarCategory carCategory){
         carCategoryRepository.save(carCategory);
-        return "redirect:/list";
+        return "redirect:/";
     }
 
     @RequestMapping("/update/{id}")
@@ -58,8 +61,6 @@ public class HomeController {
     }
     @RequestMapping("/show/{id}")
     public String detail(@PathVariable("id") long id, Model model){
-        model.addAttribute(carRepository.findById(id).get());
-        Car car = carRepository.findById(id).get();
-
-        return "showCar";
+        model.addAttribute("car", carRepository.findById(id).get());
+        return "show";
 }}
